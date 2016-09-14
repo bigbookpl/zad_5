@@ -1,0 +1,129 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Address
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\AddressRepository")
+ */
+class Address
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="street", type="string", length=255)
+     */
+    private $street;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255)
+     */
+    private $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="postCode", type="string", length=255)
+     */
+    private $postCode;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="addresses")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $users;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set street
+     *
+     * @param string $street
+     * @return Address
+     */
+    public function setStreet($street)
+    {
+        $this->street = $street;
+
+        return $this;
+    }
+
+    /**
+     * Get street
+     *
+     * @return string 
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     * @return Address
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string 
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set postCode
+     *
+     * @param string $postCode
+     * @return Address
+     */
+    public function setPostCode($postCode)
+    {
+        $this->postCode = $postCode;
+
+        return $this;
+    }
+
+    /**
+     * Get postCode
+     *
+     * @return string 
+     */
+    public function getPostCode()
+    {
+        return $this->postCode;
+    }
+}
